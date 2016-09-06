@@ -8,6 +8,9 @@ function generate(file) {
   };
 
   var map = new SourceMapGenerator(options);
+  if (file.sourcesContent) {
+    map.setSourceContent(file.sourceFile, file.sourcesContent);
+  }
   var tokens = esprima.tokenize(file.source, { loc: true });
 
   tokens.forEach(function(token) {
